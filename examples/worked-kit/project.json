@@ -1,0 +1,135 @@
+{
+  "kind": "patchhold-manifest",
+  "schemaVersion": 1,
+  "project": {
+    "schemaVersion": 1,
+    "title": "Small rig · mode expansion",
+    "universes": [
+      1
+    ],
+    "baseline": [
+      {
+        "id": "A",
+        "name": "Front left",
+        "location": "Stage left",
+        "mode": "4ch",
+        "footprint": 4,
+        "universe": 1,
+        "start": 1
+      },
+      {
+        "id": "B",
+        "name": "Front right",
+        "location": "Stage right",
+        "mode": "4ch",
+        "footprint": 4,
+        "universe": 1,
+        "start": 5
+      },
+      {
+        "id": "C",
+        "name": "Back wash",
+        "location": "Upstage",
+        "mode": "5ch",
+        "footprint": 5,
+        "universe": 1,
+        "start": 12
+      }
+    ],
+    "desired": [
+      {
+        "id": "A",
+        "name": "Front left",
+        "location": "Stage left",
+        "mode": "6ch",
+        "footprint": 6,
+        "locked": false,
+        "allowedUniverses": [
+          1
+        ]
+      },
+      {
+        "id": "B",
+        "name": "Front right",
+        "location": "Stage right",
+        "mode": "4ch",
+        "footprint": 4,
+        "locked": false,
+        "allowedUniverses": [
+          1
+        ]
+      },
+      {
+        "id": "C",
+        "name": "Back wash",
+        "location": "Upstage",
+        "mode": "5ch",
+        "footprint": 5,
+        "locked": true,
+        "allowedUniverses": [
+          1
+        ]
+      },
+      {
+        "id": "D",
+        "name": "New accent",
+        "location": "Center",
+        "mode": "1ch",
+        "footprint": 1,
+        "locked": false,
+        "allowedUniverses": [
+          1
+        ]
+      }
+    ],
+    "reservations": [
+      {
+        "universe": 1,
+        "start": 17,
+        "end": 512,
+        "purpose": "Other rig / do not allocate"
+      }
+    ]
+  },
+  "result": {
+    "schemaVersion": 1,
+    "engineVersion": "0.1.0",
+    "status": "minimum_proven",
+    "assignment": [
+      {
+        "id": "A",
+        "universe": 1,
+        "start": 1
+      },
+      {
+        "id": "B",
+        "universe": 1,
+        "start": 7
+      },
+      {
+        "id": "C",
+        "universe": 1,
+        "start": 12
+      },
+      {
+        "id": "D",
+        "universe": 1,
+        "start": 11
+      }
+    ],
+    "addressChanges": 1,
+    "nodes": 4,
+    "work": 1591,
+    "elapsedMs": 1.41,
+    "reason": "exhaustive_search",
+    "errors": [],
+    "budget": {
+      "maxNodes": 50000,
+      "maxWork": 1000000,
+      "maxMs": 0
+    },
+    "input": "{\"schemaVersion\":1,\"title\":\"Small rig · mode expansion\",\"universes\":[1],\"baseline\":[{\"id\":\"A\",\"name\":\"Front left\",\"location\":\"Stage left\",\"mode\":\"4ch\",\"footprint\":4,\"universe\":1,\"start\":1},{\"id\":\"B\",\"name\":\"Front right\",\"location\":\"Stage right\",\"mode\":\"4ch\",\"footprint\":4,\"universe\":1,\"start\":5},{\"id\":\"C\",\"name\":\"Back wash\",\"location\":\"Upstage\",\"mode\":\"5ch\",\"footprint\":5,\"universe\":1,\"start\":12}],\"desired\":[{\"id\":\"A\",\"name\":\"Front left\",\"location\":\"Stage left\",\"mode\":\"6ch\",\"footprint\":6,\"locked\":false,\"allowedUniverses\":[1]},{\"id\":\"B\",\"name\":\"Front right\",\"location\":\"Stage right\",\"mode\":\"4ch\",\"footprint\":4,\"locked\":false,\"allowedUniverses\":[1]},{\"id\":\"C\",\"name\":\"Back wash\",\"location\":\"Upstage\",\"mode\":\"5ch\",\"footprint\":5,\"locked\":true,\"allowedUniverses\":[1]},{\"id\":\"D\",\"name\":\"New accent\",\"location\":\"Center\",\"mode\":\"1ch\",\"footprint\":1,\"locked\":false,\"allowedUniverses\":[1]}],\"reservations\":[{\"universe\":1,\"start\":17,\"end\":512,\"purpose\":\"Other rig / do not allocate\"}]}"
+  },
+  "notice": "Planning output only. Verify fixture and console modes, addresses, mapping and cues before use. No hardware, compatibility or live-show safety guarantee.",
+  "importPolicy": "Saved results are informational only. Import restores the project; generate again to verify."
+}

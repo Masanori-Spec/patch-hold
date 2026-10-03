@@ -1,0 +1,186 @@
+<!doctype html>
+<html lang="ja">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; style-src 'self'; worker-src 'self'; connect-src 'none'; img-src 'self' blob:; base-uri 'none'; object-src 'none'; form-action 'none'"
+    />
+    <title>PatchHold · minimum-change patch kit</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <header class="top">
+      <a class="brand" href="#main"
+        >Patch<span>Hold</span><small>LOCAL PATCH PLANNER / 01</small></a
+      ><button id="language" type="button">English</button>
+    </header>
+    <main id="main">
+      <section class="hero">
+        <div>
+          <p class="eyebrow" data-i18n="eyebrow">
+            KEEP THE PATCH. CHANGE THE PLAN.
+          </p>
+          <h1 data-i18n="headline">変えるのは、<br />必要なアドレスだけ。</h1>
+          <p class="lead" data-i18n="lead">
+            既存のパッチを起点に、モード変更・追加・固定条件を整理。探索の証明状況と、現場で確認できる変更キットを一緒に。
+          </p>
+        </div>
+        <aside class="intro">
+          <strong>01 / BASELINE</strong><span>02 / CONSTRAINTS</span
+          ><span>03 / CHANGE KIT</span>
+          <p data-i18n="local">
+            ローカル処理 · 保存はエクスポートのみ<br />機器接続・通信・送信なし
+          </p>
+        </aside>
+      </section>
+      <div class="notice" data-i18n="notice">
+        計画用データです。灯体とコンソールのモード・アドレス・出力先・キューを必ず確認してください。機器の互換性や安全性を保証しません。
+      </div>
+      <section class="panel">
+        <div class="section-head">
+          <h2 data-i18n="project">01 / プロジェクト</h2>
+          <div class="actions">
+            <button id="demo" data-i18n="demo">デモを読み込む</button
+            ><label class="file-button"
+              ><span data-i18n="import">JSON 読み込み</span
+              ><input
+                id="import"
+                type="file"
+                accept=".json,application/json" /></label
+            ><button id="save" data-i18n="save">入力 JSON を保存</button>
+          </div>
+        </div>
+        <div class="project-fields">
+          <label
+            ><span data-i18n="title">計画名</span
+            ><input id="title" maxlength="160" /></label
+          ><label
+            ><span data-i18n="universes">論理ユニバース（カンマ区切り）</span
+            ><input id="universes" placeholder="1,2"
+          /></label>
+        </div>
+        <p class="fine" data-i18n="limits">
+          最大 4 ユニバース / 128 台 / 既存の移動可能 8 台 / 新規 8 台。1
+          台につき連続した範囲のみ。分割・跨ぎ・共有アドレス非対応。
+        </p>
+      </section>
+      <section class="panel">
+        <div class="section-head">
+          <h2 data-i18n="baseline">02 / 現在のパッチ</h2>
+          <button id="add-baseline" data-i18n="addBaseline">
+            既存灯体を追加
+          </button>
+        </div>
+        <p class="fine" data-i18n="baselineHint">
+          現状を正確に入力。目標は次の表で別に編集します。
+        </p>
+        <div
+          class="table-scroll"
+          id="baseline-table"
+          tabindex="0"
+          aria-label="Current patch / 現在のパッチ"
+        ></div>
+      </section>
+      <section class="panel">
+        <div class="section-head">
+          <h2 data-i18n="desired">03 / 変更後の目標</h2>
+          <button id="add-desired" data-i18n="addDesired">
+            新規灯体を追加
+          </button>
+        </div>
+        <p class="fine" data-i18n="desiredHint">
+          固定は現在のユニバースと開始アドレスを維持します。モード変更の作業は、アドレスが同じでも変更表に載ります。
+        </p>
+        <div
+          class="table-scroll"
+          id="desired-table"
+          tabindex="0"
+          aria-label="Desired patch / 変更後の目標"
+        ></div>
+      </section>
+      <section class="panel">
+        <div class="section-head">
+          <h2 data-i18n="reservations">04 / 使用しない範囲</h2>
+          <button id="add-reservation" data-i18n="addReservation">
+            予約範囲を追加
+          </button>
+        </div>
+        <div
+          class="table-scroll"
+          id="reservation-table"
+          tabindex="0"
+          aria-label="Reserved ranges / 予約範囲"
+        ></div>
+      </section>
+      <section class="planner">
+        <div>
+          <h2 data-i18n="generateTitle">変更数を抑えて、計画する</h2>
+          <p data-i18n="objective">
+            評価するのは既存灯体のユニバース・開始アドレス変更数。作業量や配線の最小化ではありません。
+          </p>
+        </div>
+        <div class="budget-fields">
+          <label
+            ><span data-i18n="nodes">最大探索ノード</span
+            ><input
+              id="nodes"
+              type="number"
+              min="1"
+              max="200000"
+              value="50000" /></label
+          ><label
+            ><span data-i18n="work">最大探索作業単位</span
+            ><input
+              id="work"
+              type="number"
+              min="1"
+              max="5000000"
+              value="1000000"
+          /></label>
+          <div class="actions">
+            <button id="generate" class="primary" data-i18n="generate">
+              計画を生成</button
+            ><button id="cancel" disabled data-i18n="cancel">中止</button>
+          </div>
+        </div>
+      </section>
+      <section class="panel results" id="result-panel">
+        <div class="section-head">
+          <h2 data-i18n="results">05 / 結果と変更キット</h2>
+          <span id="status-badge">NOT GENERATED</span>
+        </div>
+        <div id="status" role="status" aria-live="polite" data-i18n="ready">
+          入力を確認して計画を生成してください。
+        </div>
+        <div id="metrics"></div>
+        <div id="occupancy"></div>
+        <div
+          class="table-scroll"
+          id="result-table"
+          tabindex="0"
+          aria-label="Plan and crew checklist / 計画と確認リスト"
+        ></div>
+        <div class="actions exports">
+          <button id="export-patch" disabled data-i18n="patch">
+            完全パッチ CSV</button
+          ><button id="export-changes" disabled data-i18n="changes">
+            変更のみ CSV</button
+          ><button id="export-cards" disabled data-i18n="cards">
+            印刷用カード HTML</button
+          ><button id="export-project" disabled data-i18n="manifest">
+            計画 JSON
+          </button>
+        </div>
+      </section>
+      <footer>
+        <strong>PatchHold / 0.1.0</strong>
+        <p data-i18n="footer">
+          範囲内の数値計画を支援する試作ソフトウェア。既存製品との差分は、既存パッチを起点とした変更計画・固定条件・探索証明状況・変更キットの組合せです。新規性・需要を実証するものではありません。
+        </p>
+      </footer>
+    </main>
+    <script type="module" src="app.mjs"></script>
+  </body>
+</html>

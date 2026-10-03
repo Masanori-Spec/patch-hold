@@ -1,0 +1,26 @@
+{
+  "name": "patch-hold",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Local minimum-address-change DMX patch planning with bounded proof status",
+  "engines": {
+    "node": ">=24"
+  },
+  "bin": {
+    "patch-hold": "src/cli.mjs"
+  },
+  "scripts": {
+    "test": "node --disable-warning=ExperimentalWarning --test test/*.test.mjs",
+    "typecheck": "tsc --noEmit",
+    "build": "node scripts/build.mjs",
+    "serve": "node scripts/serve.mjs",
+    "benchmark": "node --disable-warning=ExperimentalWarning scripts/benchmark.mjs",
+    "verify": "npm run typecheck && npm test && npm run build",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@playwright/test": "1.56.0"
+  }
+}

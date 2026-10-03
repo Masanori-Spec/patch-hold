@@ -1,0 +1,123 @@
+{
+  "runtime": "v24.19.0",
+  "platform": "linux",
+  "scope": "Synthetic local Node measurements only; not browser or physical-hardware validation",
+  "budget": {
+    "maxNodes": 50000,
+    "maxWork": 1000000,
+    "maxMs": 5000
+  },
+  "scenarios": 12,
+  "completed": 4,
+  "incomplete": 8,
+  "results": [
+    {
+      "scenario": "worked-mode-expansion",
+      "status": "minimum_proven",
+      "addressChanges": 1,
+      "nodes": 4,
+      "work": 1591,
+      "elapsedMs": 3.17,
+      "reason": "exhaustive_search"
+    },
+    {
+      "scenario": "128-fixtures-8-movable",
+      "status": "minimum_proven",
+      "addressChanges": 0,
+      "nodes": 9,
+      "work": 5253,
+      "elapsedMs": 3.68,
+      "reason": "global_zero_lower_bound"
+    },
+    {
+      "scenario": "120-locked-plus-8-new",
+      "status": "minimum_proven",
+      "addressChanges": 0,
+      "nodes": 9,
+      "work": 25185,
+      "elapsedMs": 9.9,
+      "reason": "global_zero_lower_bound"
+    },
+    {
+      "scenario": "fragmented-no-3-channel-gap",
+      "status": "no_solution_proven",
+      "addressChanges": null,
+      "nodes": 0,
+      "work": 511,
+      "elapsedMs": 0.5,
+      "reason": "fixture_has_no_legal_range"
+    },
+    {
+      "scenario": "dense-16-search-items-seed-4200",
+      "status": "feasible_incomplete",
+      "addressChanges": 8,
+      "nodes": 517,
+      "work": 1000000,
+      "elapsedMs": 90.22,
+      "reason": "work_budget"
+    },
+    {
+      "scenario": "dense-16-search-items-seed-4201",
+      "status": "budget_exhausted",
+      "addressChanges": null,
+      "nodes": 1873,
+      "work": 1000000,
+      "elapsedMs": 73.11,
+      "reason": "work_budget"
+    },
+    {
+      "scenario": "dense-16-search-items-seed-4202",
+      "status": "feasible_incomplete",
+      "addressChanges": 6,
+      "nodes": 390,
+      "work": 1000000,
+      "elapsedMs": 74.95,
+      "reason": "work_budget"
+    },
+    {
+      "scenario": "dense-16-search-items-seed-4203",
+      "status": "budget_exhausted",
+      "addressChanges": null,
+      "nodes": 2013,
+      "work": 1000000,
+      "elapsedMs": 67.28,
+      "reason": "work_budget"
+    },
+    {
+      "scenario": "dense-16-search-items-seed-4204",
+      "status": "feasible_incomplete",
+      "addressChanges": 7,
+      "nodes": 386,
+      "work": 1000000,
+      "elapsedMs": 66.88,
+      "reason": "work_budget"
+    },
+    {
+      "scenario": "dense-16-search-items-seed-4205",
+      "status": "budget_exhausted",
+      "addressChanges": null,
+      "nodes": 2106,
+      "work": 1000000,
+      "elapsedMs": 66.24,
+      "reason": "work_budget"
+    },
+    {
+      "scenario": "dense-16-search-items-seed-4206",
+      "status": "feasible_incomplete",
+      "addressChanges": 7,
+      "nodes": 319,
+      "work": 1000000,
+      "elapsedMs": 71.39,
+      "reason": "work_budget"
+    },
+    {
+      "scenario": "dense-16-search-items-seed-4207",
+      "status": "budget_exhausted",
+      "addressChanges": null,
+      "nodes": 2078,
+      "work": 1000000,
+      "elapsedMs": 63.81,
+      "reason": "work_budget"
+    }
+  ]
+}

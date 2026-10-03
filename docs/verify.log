@@ -1,0 +1,71 @@
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> patch-hold@0.1.0 verify
+> npm run typecheck && npm test && npm run build
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> patch-hold@0.1.0 typecheck
+> tsc --noEmit
+
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> patch-hold@0.1.0 test
+> node --disable-warning=ExperimentalWarning --test test/*.test.mjs
+
+✔ built browser module graph resolves JS imports and compiled engine matches source (244.773483ms)
+✔ CLI produces four outputs and refuses any existing output directory or symlink (418.941183ms)
+✔ CLI budget exit codes, input errors and no partial exports for unproven feasibility (528.680383ms)
+✔ worked mode expansion proves exactly one address change (6.576695ms)
+✔ 1,200 seeded cases match an independent exhaustive cell-set oracle (1468.644268ms)
+✔ integer ranges, exact-fit 512 and non-contiguous universes (0.996927ms)
+✔ invalid numeric values and cross-universe baseline ranges rejected (1.080184ms)
+✔ bad baseline rejected, conflicting desired sizes remain a solvable problem (1.706801ms)
+✔ lock restrictions and desired-only reservations (0.860762ms)
+✔ fragmentation is not total-free-channel feasibility (0.377591ms)
+✔ new, removed and empty targets supported (0.312963ms)
+✔ duplicate IDs, undeclared universes, unsupported schema, shared/split fields rejected (1.085362ms)
+✔ resource caps and oversized input rejected before search (1.975758ms)
+✔ work/node budgets never claim no solution or minimum without evidence (2.655405ms)
+✔ feasible incumbent under interruption is explicitly incomplete (10.449101ms)
+✔ cancellation drops any incomplete assignment; deterministic work and stable row-independent tie order (2.594944ms)
+✔ independent validator rejects collision, moved lock, missing ID, wrong cost and stale certificate (1.331994ms)
+✔ prototype-shaped IDs are inert data (0.447076ms)
+✔ all four outputs reflect the same assignment and honest status (9.565335ms)
+✔ mode-only changes included; unchanged address is not unchanged work (2.074267ms)
+✔ removal, rename and new-fixture checklist (1.557405ms)
+✔ formula prefixes including whitespace and control prefixes are neutralized (0.21158ms)
+✔ HTML strings escaped and no active user markup, URL or script inserted (1.178212ms)
+✔ sanitized bounded filenames, input-only manifests and stale export rejection (3.242514ms)
+✔ maximum supported Unicode project and result manifest fit the import byte cap and round-trip (27.913151ms)
+✔ independent complete-tuple oracle: exhaustive 1,944 small two-universe model combinations (2887.862055ms)
+✔ objective excludes additions, removals and mode-only changes, but checklist retains mode work (1.417783ms)
+✔ boundary and labels: channel 512 is legal, a 513th channel and forbidden universes are infeasible (0.260614ms)
+✔ a reservation may force movement from baseline; overlapping reservations have union semantics (0.381677ms)
+✔ node and work cutoffs do not invent infeasibility or claim minimum (11.415725ms)
+✔ time cutoff and cancellation are distinct; cancellation discards any intermediate plan (0.593207ms)
+✔ strict numeric validation rejects coercible, unsafe, nonfinite and fractional input (0.610503ms)
+✔ rejects sparse universe/domain arrays rather than accepting undefined or crashing (0.755963ms)
+✔ oversized universe arrays are rejected without scanning their whole sparse length (0.305452ms)
+✔ prototype-looking IDs are safe keys; extra prototype fields and class-shaped objects are rejected (0.973952ms)
+✔ input limits bound entries, individual strings, total bytes, and distinct fixture identities (2.006263ms)
+✔ manifest import ignores fabricated result status and stale inputs cannot export (1.502852ms)
+✔ CSV formula defenses and HTML escaping preserve hostile labels as inert text (0.814331ms)
+✔ CLI refuses existing output directory without overwriting user files and bounds input bytes (429.593112ms)
+✔ CLI rejects FIFO input promptly instead of blocking in open() (104.840354ms)
+ℹ tests 40
+ℹ suites 0
+ℹ pass 40
+ℹ fail 0
+ℹ cancelled 0
+ℹ skipped 0
+ℹ todo 0
+ℹ duration_ms 3590.783875
+npm warn Unknown env config "http-proxy". This will stop working in the next major version of npm.
+
+> patch-hold@0.1.0 build
+> node scripts/build.mjs
+
+(node:287) ExperimentalWarning: stripTypeScriptTypes is an experimental feature and might change at any time
+(Use `node --trace-warnings ...` to show where the warning was created)
+Built local static app in dist/; no network or publication.
