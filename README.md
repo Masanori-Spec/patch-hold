@@ -2,7 +2,7 @@
 
 Local, bounded minimum-address-change DMX patch planning. Japanese-first browser UI with an English toggle, plus a CLI using the same TypeScript engine.
 
-**Status: source-only release of a locally tested prototype. Publishing the source does not imply browser validation or hosted-CI execution. Browser assertions have not run because this environment has no Playwright Chromium executable. No hosted CI was activated.**
+**Status: locally tested prototype; browser acceptance is pending. A hosted verification workflow is included, but its presence is not a passing result. The original local browser attempt stopped before assertions because the Playwright Chromium executable was unavailable. Check [verification details](docs/VERIFICATION.md) for the recorded scope and remaining gates.**
 
 PatchHold starts with a valid current patch, desired mode footprints, hard address locks, and reserved ranges. It produces a full replacement patch CSV, a changes-only crew CSV, printable address-card HTML, and a versioned project/result JSON manifest.
 
@@ -32,7 +32,7 @@ npm run test:browser
 
 `verify` means TypeScript checking, Node tests, and static build. Browser tests are deliberately separate; a passed `verify` does not imply browser validation. Development versions are pinned in `package-lock.json`. During this build, an offline install was unavailable; existing local copies of those same pinned tools were used for checking. No new browser or software download was performed.
 
-No license has been selected or added. No CI workflow has been installed or enabled.
+No license has been selected or added. The verification workflow runs Node 24 numerical checks in UTC and Asia/Tokyo, plus sandbox-enabled desktop/mobile Chromium scenarios. Browser evidence includes actual downloads and screenshots; a successful `verify` command alone still does not imply a browser pass.
 
 ## Worked example
 

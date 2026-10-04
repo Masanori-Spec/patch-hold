@@ -30,7 +30,9 @@ The authored Playwright suite defines 8 desktop/mobile runs covering worked outp
 
 The local suite was attempted, but all 8 runs stopped at browser launch: the Playwright Chromium headless executable was not present. **No browser assertions ran.** No browser was downloaded. Visual layout, keyboard/accessibility behavior, worker/CSP integration, downloads and print rendering remain unverified in a real browser.
 
-The source-only release does not imply browser validation or hosted-CI execution. No hosted CI was activated and no license was selected. Hardware behavior, electrical safety, manufacturer compatibility, real-show suitability, user demand and patentability were not tested.
+The original source-only release had no hosted CI. A verification workflow is now included with two Node 24 numerical jobs (UTC and Asia/Tokyo) and desktop/mobile Chromium scenarios with the browser sandbox enabled. Its actual run status, exported files and screenshots must be inspected before claiming browser acceptance. No license was selected. Hardware behavior, electrical safety, manufacturer compatibility, real-show suitability, user demand and patentability were not tested.
+
+The browser suite now preserves the actual four downloaded files, compares CSV and HTML bytes with the worked example, checks the JSON assignment and canonical input binding, renders exported address cards to screenshots/PDF, and records English/Japanese page and result screenshots. These checks are authored, not yet a recorded pass.
 
 ## Remaining browser acceptance gate
 

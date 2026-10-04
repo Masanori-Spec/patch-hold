@@ -1,12 +1,14 @@
 import { test, expect } from "@playwright/test";
-import { readFile } from "node:fs/promises";
+import { readFile, writeFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
+import { pathToFileURL } from "node:url";
 const ready = async (page) => {
   await page.goto("/");
   await page.getByRole("button", { name: "English", exact: true }).click();
 };
 test("worked example, bilingual labels, mobile overflow, all exports and print content", async ({
-  page,
-}) => {
+  page, context,
+}, testInfo) => {
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
   await ready(page);
@@ -26,20 +28,55 @@ test("worked example, bilingual labels, mobile overflow, all exports and print c
   await expect(page.locator("#status-badge")).toHaveText("MINIMUM PROVEN");
   await expect(page.locator("#result-table")).toContainText("U1:7–10");
   await expect(page.locator("#result-table")).toContainText("mode/footprint");
-  for (const [name, needle] of [
-    ["Full patch CSV", '"B"'],
-    ["Changes-only CSV", "mode/footprint"],
-    ["Printable cards HTML", "U1 · 7–10"],
-    ["Plan JSON", "patchhold-manifest"],
+  await page.screenshot({ path: testInfo.outputPath("worked-en.png"), fullPage: true });
+  await page.locator("#result-panel").screenshot({ path: testInfo.outputPath("result-en.png") });
+  const downloaded = {}, evidence = [];
+  for (const [name, filename] of [
+    ["Full patch CSV", "patch.csv"],
+    ["Changes-only CSV", "changes.csv"],
+    ["Printable cards HTML", "address-cards.html"],
+    ["Plan JSON", "project.json"],
   ]) {
     const event = page.waitForEvent("download");
     await page.getByRole("button", { name, exact: true }).click();
-    const dl = await event,
-      bytes = await readFile(await dl.path(), "utf8");
-    expect(bytes).toContain(needle);
+    const dl = await event, output = testInfo.outputPath(filename);
+    expect(await dl.failure()).toBeNull();
+    await dl.saveAs(output);
+    const bytes = await readFile(output);
+    downloaded[filename] = output;
+    evidence.push({ filename, suggestedFilename: dl.suggestedFilename(), bytes: bytes.length,
+      sha256: createHash("sha256").update(bytes).digest("hex") });
+    const golden = await readFile(new URL(`../examples/worked-kit/${filename}`, import.meta.url));
+    if (filename !== "project.json") expect(bytes.equals(golden)).toBe(true);
+    else {
+      const actual = JSON.parse(bytes.toString()), expected = JSON.parse(golden.toString());
+      expect(actual.kind).toBe("patchhold-manifest");
+      expect(actual.project).toEqual(expected.project);
+      expect(actual.result.status).toBe("minimum_proven");
+      expect(actual.result.addressChanges).toBe(1);
+      expect(actual.result.assignment).toEqual(expected.result.assignment);
+      expect(actual.result.input).toBe(expected.result.input);
+      expect(JSON.parse(actual.result.input)).toEqual(actual.project);
+    }
   }
+  await writeFile(testInfo.outputPath("download-evidence.json"), JSON.stringify(evidence, null, 2) + "\n");
+  const cards = await context.newPage();
+  await cards.goto(pathToFileURL(downloaded["address-cards.html"]).href);
+  await expect(cards.locator(".card")).toHaveCount(4);
+  await expect(cards.locator(".address")).toHaveText(["U1 · 1–6", "U1 · 7–10", "U1 · 12–16", "U1 · 11–11"]);
+  await expect(cards.locator("body")).toContainText("1 existing address changes");
+  await cards.emulateMedia({ media: "print" });
+  await cards.screenshot({ path: testInfo.outputPath("printed-address-cards.png"), fullPage: true });
+  await cards.pdf({ path: testInfo.outputPath("printed-address-cards.pdf"), format: "A4", printBackground: true });
+  await cards.close();
   await page.getByRole("button", { name: "日本語", exact: true }).click();
   await expect(page.locator("#export-patch")).toHaveText("完全パッチ CSV");
+  await page.screenshot({ path: testInfo.outputPath("worked-ja.png"), fullPage: true });
+  await page.locator("#import").setInputFiles(downloaded["project.json"]);
+  await expect(page.locator("#export-patch")).toBeDisabled();
+  await expect(page.locator("#result-table")).toBeEmpty();
+  await page.locator("#generate").click();
+  await expect(page.locator("#status-badge")).toHaveText("MINIMUM PROVEN");
   expect(errors).toEqual([]);
 });
 test("edit, repeated generation, cancellation and stale export invalidation", async ({
