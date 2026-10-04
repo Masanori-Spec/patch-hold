@@ -88,6 +88,11 @@ test("edit, repeated generation, cancellation and stale export invalidation", as
   await page.getByLabel("desired A Channels", { exact: true }).fill("7");
   await expect(page.locator("#export-patch")).toBeDisabled();
   await expect(page.locator("#result-table")).toBeEmpty();
+  // 7 + 4 + 5 + 1 exceeds the 16 available channels: this edit is infeasible.
+  await page.locator("#generate").click();
+  await expect(page.locator("#status-badge")).toHaveText("NO SOLUTION PROVEN");
+  await expect(page.locator("#export-patch")).toBeDisabled();
+  await page.getByLabel("desired A Channels", { exact: true }).fill("6");
   await page.locator("#generate").click();
   await page.locator("#generate").click();
   await expect(page.locator("#status-badge")).toHaveText("MINIMUM PROVEN");
