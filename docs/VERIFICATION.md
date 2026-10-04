@@ -24,16 +24,30 @@ Of 12 fixed synthetic scenarios, 4 completed: the worked example, a 128-fixture/
 
 These measurements justify bounded prototype caps, not a promise that every allowed input completes. Exact times are machine-dependent; consult the raw file. No browser performance or live-rig conclusions follow.
 
-## Not validated
+## Original local browser limitation
 
 The authored Playwright suite defines 8 desktop/mobile runs covering worked output bytes, language switching, viewport overflow, keyboard generation, invalid locks, budget exhaustion, edits, repeated generation, cancellation, stale exports, local JSON import and reload.
 
-The local suite was attempted, but all 8 runs stopped at browser launch: the Playwright Chromium headless executable was not present. **No browser assertions ran.** No browser was downloaded. Visual layout, keyboard/accessibility behavior, worker/CSP integration, downloads and print rendering remain unverified in a real browser.
+The local suite was attempted, but all 8 runs stopped at browser launch: the Playwright Chromium headless executable was not present. **No browser assertions ran in that original local attempt.** No local browser was downloaded. The later hosted checks below supersede this browser-execution gap within their stated scope.
 
-The original source-only release had no hosted CI. A verification workflow is now included with two Node 24 numerical jobs (UTC and Asia/Tokyo) and desktop/mobile Chromium scenarios with the browser sandbox enabled. Its actual run status, exported files and screenshots must be inspected before claiming browser acceptance. No license was selected. Hardware behavior, electrical safety, manufacturer compatibility, real-show suitability, user demand and patentability were not tested.
+## Hosted browser and numerical acceptance, 2026-10-04
 
-The browser suite now preserves the actual four downloaded files, compares CSV and HTML bytes with the worked example, checks the JSON assignment and canonical input binding, renders exported address cards to screenshots/PDF, and records English/Japanese page and result screenshots. These checks are authored, not yet a recorded pass.
+[Run 37167889180](https://github.com/Masanori-Spec/patch-hold/actions/runs/37167889180), commit `6f451edc9c27cd8702c6e80803a42fb32b4972df`, passed all three jobs:
 
-## Remaining browser acceptance gate
+- Node 24.21.0, UTC: 40 tests, strict TypeScript, compiled module graph and static build
+- Node 24.21.0, Asia/Tokyo: the same 40-test aggregate
+- Playwright 1.56.0 / Chromium 141 on Ubuntu 22.04 with the browser sandbox enabled: all 8 desktop and emulated Pixel 7 scenarios, no skips or retries
 
-Run the authored browser suite in an authorized environment with the pinned Chromium runtime, inspect desktop/mobile screenshots and printable cards, and fix any failures. Verify source and output hashes when publishing source or later updates. Do not describe this prototype as production-ready while that gate remains open.
+Actual browser downloads were saved and independently read back. Both CSV files and exported address-card HTML match `examples/worked-kit/` byte for byte. JSON inputs, assignment, one-change objective, search status and canonical input binding match; elapsed time and the browser's wall-clock budget appropriately differ from the CLI sample. Importing a saved result restores inputs and disables exports until a new search.
+
+Desktop/mobile English/Japanese screenshots and the result panels were inspected. The narrow-screen tables stay inside horizontal scrolling containers. The actual exported HTML rendered four correct address cards; its A4 PDF is one page and was visually checked. These are sample-based layout checks, not a complete accessibility audit or a real-device browser matrix.
+
+[Persisted evidence and download hashes](browser-evidence/evidence.json), [desktop](browser-evidence/desktop-en.png), [mobile](browser-evidence/mobile-ja.png), [print screenshot](browser-evidence/printed-cards.png), [PDF](browser-evidence/printed-cards.pdf), and [hosted benchmark](browser-evidence/benchmark-ci.json).
+
+### Corrected test expectation
+
+The first hosted run passed 6/8 browser cases. Two copies of one authored scenario incorrectly expected a feasible plan after changing A from 6 to 7 channels. That edit requires 17 channels in the available 16-channel range; the application correctly returned `no_solution_proven`. The test now explicitly verifies that outcome, restores A to 6 channels, then checks repeated generation and cancellation. No production solver or UI change was needed. The corrected suite passed all 8 cases.
+
+## Remaining limits
+
+No license was selected. Hardware behavior, electrical safety, manufacturer compatibility, live-show suitability, other browser engines, actual mobile devices, full accessibility conformance, user demand and patentability remain unvalidated. Eight dense synthetic benchmark cases still reach the work limit. Do not describe this bounded prototype as production-ready or universally optimal.

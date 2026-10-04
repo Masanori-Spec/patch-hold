@@ -2,6 +2,8 @@
 
 Date: 2026-10-03 (UTC)
 
+Subsequent update, 2026-10-04: the original browser-execution limitation recorded below was followed by an authorized hosted run. All eight Chromium desktop/mobile scenarios passed, and actual exports, screenshots and print artifacts were inspected. See [current verification record](VERIFICATION.md). The historical source-review findings below are preserved.
+
 ## Result
 
 The bounded allocation model, exact objective, proof-status distinctions, independent feasibility checks, and CLI/export safeguards passed the review checks below. This is a **local numerical-model review**, not a visual/browser acceptance pass or physical lighting-system validation.

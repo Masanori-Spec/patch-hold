@@ -2,7 +2,7 @@
 
 Local, bounded minimum-address-change DMX patch planning. Japanese-first browser UI with an English toggle, plus a CLI using the same TypeScript engine.
 
-**Status: locally tested prototype; browser acceptance is pending. A hosted verification workflow is included, but its presence is not a passing result. The original local browser attempt stopped before assertions because the Playwright Chromium executable was unavailable. Check [verification details](docs/VERIFICATION.md) for the recorded scope and remaining gates.**
+**Status: bounded prototype with numerical and Chromium browser checks passing. [Recorded CI run](https://github.com/Masanori-Spec/patch-hold/actions/runs/37167889180): 40 Node tests in UTC and Asia/Tokyo, plus all 8 desktop/mobile browser scenarios. Actual exported bytes, screenshots and print output were inspected. This is not physical-fixture or live-show validation. See [verification details](docs/VERIFICATION.md).**
 
 PatchHold starts with a valid current patch, desired mode footprints, hard address locks, and reserved ranges. It produces a full replacement patch CSV, a changes-only crew CSV, printable address-card HTML, and a versioned project/result JSON manifest.
 
@@ -30,7 +30,7 @@ npm run benchmark
 npm run test:browser
 ```
 
-`verify` means TypeScript checking, Node tests, and static build. Browser tests are deliberately separate; a passed `verify` does not imply browser validation. Development versions are pinned in `package-lock.json`. During this build, an offline install was unavailable; existing local copies of those same pinned tools were used for checking. No new browser or software download was performed.
+`verify` means TypeScript checking, Node tests, and static build. Browser tests are deliberately separate; a passed `verify` does not imply browser validation. Development versions are pinned in `package-lock.json`. During the original local build, an offline install was unavailable, so existing pinned local tools were used. The later authorized hosted run used a clean `npm ci --ignore-scripts` and the pinned Playwright Chromium runtime.
 
 No license has been selected or added. The verification workflow runs Node 24 numerical checks in UTC and Asia/Tokyo, plus sandbox-enabled desktop/mobile Chromium scenarios. Browser evidence includes actual downloads and screenshots; a successful `verify` command alone still does not imply a browser pass.
 
@@ -90,9 +90,18 @@ CSV text cells neutralize spreadsheet formula prefixes and use quoted RFC-style 
 - 1,944 exhaustive reduced-capacity two-universe cases compared against an independent complete-tuple oracle
 - Domain, locks, reservations, mode-only work, input bounds, escaping, CLI FIFO rejection and no-overwrite checks
 - Synthetic benchmark: 12 fixed 512-channel scenarios; 4 completed, 8 reached the work budget. Dense 16-search-item cases are deliberately included and remain difficult
-- 40 Node tests, TypeScript and build checks pass, including compiled module-graph validation; browser launch failed before assertions because the Chromium executable is absent
+- 40 Node tests, TypeScript and build checks pass, including compiled module-graph validation
+- 8 Chromium desktop/mobile browser cases pass with the sandbox enabled: bilingual UI, actual downloads, print rendering, edits, repeated generation, cancellation, invalid constraints, budget cutoff and local JSON import/reload
 
 See [verification details](docs/VERIFICATION.md) and the [raw benchmark JSON](docs/benchmark-results.json). These are local Node measurements, not physical-fixture, browser-performance or full-rig scalability claims.
+
+## Captured interface and output
+
+Screenshots below are from the recorded hosted run with synthetic inputs. Wide editable tables scroll horizontally on narrow screens.
+
+![PatchHold desktop interface with generated minimum-change plan](docs/browser-evidence/desktop-en.png)
+
+[Mobile Japanese interface](docs/browser-evidence/mobile-ja.png) · [Printed address cards](docs/browser-evidence/printed-cards.png) · [A4 PDF rendered from exported HTML](docs/browser-evidence/printed-cards.pdf) · [Evidence and output hashes](docs/browser-evidence/evidence.json)
 
 ## Safety and scope
 

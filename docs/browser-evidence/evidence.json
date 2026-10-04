@@ -1,0 +1,75 @@
+{
+  "run": "https://github.com/Masanori-Spec/patch-hold/actions/runs/37167889180",
+  "commit": "6f451edc9c27cd8702c6e80803a42fb32b4972df",
+  "date": "2026-10-04",
+  "node": "24.21.0",
+  "chromium": "141",
+  "playwright": "1.56.0",
+  "numericalTestsPerTimezone": 40,
+  "timezones": [
+    "UTC",
+    "Asia/Tokyo"
+  ],
+  "browserCases": 8,
+  "browserSkipped": 0,
+  "chromiumSandbox": true,
+  "browserArtifactSha256": "c4e775194da7a731de4c88506c72b55959e55a28b7d68ab39feed6eedfd7aed0",
+  "desktopDownloads": [
+    {
+      "filename": "patch.csv",
+      "suggestedFilename": "Small-rig-mode-expansion-patch.csv",
+      "bytes": 1262,
+      "sha256": "dd89358fe00dac4d41b73f9316bf4e26b81688ceaf57e44826666fcee33eed7f"
+    },
+    {
+      "filename": "changes.csv",
+      "suggestedFilename": "Small-rig-mode-expansion-changes.csv",
+      "bytes": 1250,
+      "sha256": "13371b4a13e846bb589cd6399311ace12659f08818995d169b9ed68e9ce3528d"
+    },
+    {
+      "filename": "address-cards.html",
+      "suggestedFilename": "Small-rig-mode-expansion-address-cards.html",
+      "bytes": 2774,
+      "sha256": "5f2725a8e7fa2191aec52b1fc07b36231a50f8e891bcd5908c26b483021e2dd1"
+    },
+    {
+      "filename": "project.json",
+      "suggestedFilename": "Small-rig-mode-expansion-project.json",
+      "bytes": 3966,
+      "sha256": "c8d590980604096e89244a944ed177f0eb9d3e65257de14374da74e2594dd136"
+    }
+  ],
+  "mobileDownloads": [
+    {
+      "filename": "patch.csv",
+      "suggestedFilename": "Small-rig-mode-expansion-patch.csv",
+      "bytes": 1262,
+      "sha256": "dd89358fe00dac4d41b73f9316bf4e26b81688ceaf57e44826666fcee33eed7f"
+    },
+    {
+      "filename": "changes.csv",
+      "suggestedFilename": "Small-rig-mode-expansion-changes.csv",
+      "bytes": 1250,
+      "sha256": "13371b4a13e846bb589cd6399311ace12659f08818995d169b9ed68e9ce3528d"
+    },
+    {
+      "filename": "address-cards.html",
+      "suggestedFilename": "Small-rig-mode-expansion-address-cards.html",
+      "bytes": 2774,
+      "sha256": "5f2725a8e7fa2191aec52b1fc07b36231a50f8e891bcd5908c26b483021e2dd1"
+    },
+    {
+      "filename": "project.json",
+      "suggestedFilename": "Small-rig-mode-expansion-project.json",
+      "bytes": 3966,
+      "sha256": "ef52d0634025e9db2b05cf646ff1c2de307469ae42420e6f235b54b67feae05e"
+    }
+  ],
+  "comparison": "CSV and HTML bytes equal examples/worked-kit; result JSON project, assignment and canonical input binding equal the worked example, excluding expected machine-dependent timing/budget metadata.",
+  "limitations": [
+    "Chromium desktop and emulated Pixel 7 only; not all browsers or real mobile hardware",
+    "No physical fixture/console, compatibility, electrical safety or live-show validation",
+    "Dense 16-search-item benchmark cases remain incomplete within default work budget"
+  ]
+}
