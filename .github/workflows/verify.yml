@@ -1,0 +1,46 @@
+name: Verify PatchHold
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  numerical:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    strategy:
+      matrix:
+        timezone: [UTC, Asia/Tokyo]
+    env:
+      TZ: ${{ matrix.timezone }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npm run verify
+      - run: node --disable-warning=ExperimentalWarning scripts/benchmark.mjs > benchmark-ci.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: patch-hold-numerical-${{ strategy.job-index }}
+          path: benchmark-ci.json
+  browser:
+    # Ubuntu 22.04 compatibility baseline; Chromium sandbox stays enabled.
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+      - run: npm ci --ignore-scripts
+      - run: npx playwright install --with-deps chromium
+      - name: Desktop and mobile scenarios, exported bytes and print evidence
+        run: npm run test:browser
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: patch-hold-browser-evidence
+          path: test-results/
